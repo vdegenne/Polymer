@@ -65,4 +65,7 @@ Polymer.dom(this.root).querySelector('.myhello')
 
 Une des forces de javascript et du DOM réside dans la possibilité de déléguer des tâches aux élements parents en déclenchant des évenements personalisés qui remonte d'élément en élément par effet bubbling. C'est un peu compliqué à mettre en place mais avec Polymer, le mécanisme est simplifié.
 
-Une des méthodes consisterait à créer un Polymer *x-updater* qu'on insérerait dans les Polymers qui ont besoin d'être "réveillés" en utilisant le clonage de nodes (voir [cloning nodes](https://github.com/vdegenne/javascript#cloning-nodes)) au lancement de l'application.
+Une des méthodes consisterait à créer un Polymer *x-updater* qu'on insérerait dans les Polymers qui ont besoin d'être "réveillés" (en utilisant le clonage de nodes, voir [cloning nodes](https://github.com/vdegenne/javascript#cloning-nodes)) au lancement de l'application, et en utilisant l'attribut **listeners** du prototype des Polymers ciblés. Les *x-updater* doivent donc avoir une classe commune pour pouvoir les cibler et exécuter le fire dans toutes les parties de l'application où ils se trouvent.
+Cependant cette méthode est un peu astucieuse à mettre en place (voir exemples/demos/x-shaker).
+
+Une deuxième méthode consisterait à regrouper toutes les tâches spécifiques de l'applicaiton dans l'élément racine de l'application (e.g. *x-app*) et à les exécuter en fonction des écoutes événementielles enregistrées. Par effet bubbling on peut intercepter tous les événements déclenchés par l'interaction de l'utilisateur avec l'interface. C'est une méthode plus agréable à mettre en place et plus facile à maintenir (voir exemples/demos/managing-tasks)

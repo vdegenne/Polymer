@@ -1,12 +1,11 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 
-
 <script>
 Polymer({
-	is: 'x-a',
+	is: 'x-shaker',
 
-	shareReadyCallback: function (e) {
-		console.log (e.detail.value);
+	shake: function () {
+		this.fire('shake');
 	}
-});
+})
 </script>
