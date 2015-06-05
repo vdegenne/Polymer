@@ -1,8 +1,9 @@
-# Stackoverflow questions personnelles
+# stackoverflow
 
 
 ```this``` and ```this.root``` might be confusing.
-[How to querySelector elements of an element's DOM using Polymer](http://stackoverflow.com/questions/30638632/how-to-queryselector-elements-of-an-elements-dom-using-polymer/30639528#30639528)
+
+- [How to querySelector elements of an element's DOM using Polymer](http://stackoverflow.com/questions/30638632/how-to-queryselector-elements-of-an-elements-dom-using-polymer/30639528#30639528)
 
 
 
@@ -58,7 +59,7 @@ Polymer.dom(this.root).querySelector(selector); // si l'on souhaite sélectionner
 Polymer.dom(this).appendChild()
 
 Polymer.dom(this.root).querySelector('.myhello')
-
+```
 
 
 # Gérer les événements dans l'application
