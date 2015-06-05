@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+	<title>Sharing data through Polymer elements</title>
+	<script src="../../components/webcomponentsjs/webcomponents-lite.js"></script>
+
+	<!-- <link rel="import" href="model.html"> this is imported in nest.html-->
+	<link rel="import" href="nest.html">
+	<link rel="import" href="nest2.html">
+
+	<style>
+	html, body {
+		height: 100%;
+		margin: 0;
+		overflow: hidden;
+	}
+	</style>
+</head>
+<body>
+<button id="trigger">update UI</button>
+<v-nest id="nest1"></v-nest>
+<v-nest2 id="nest2"></v-nest2>
+<script>
+var trigger = document.getElementById('trigger');
+var nest1 = document.getElementById('nest1');
+var nest2 = document.getElementById('nest2');
+
+trigger.addEventListener('click', function (e) {
+
+})
+</script>
+</body>
+</html>

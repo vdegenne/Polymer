@@ -1,0 +1,20 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+
+<script>
+Polymer({
+	is: 'x-b',
+
+	properties: {
+		value: Number
+	},
+
+	share: function () {
+		this.fire('share-ready', { value: this.value });
+	},
+
+	ready: function () {
+		this.value = 12;
+	}
+});
+</script>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Events Polymer Exemples</title>
+	<script src="../../components/webcomponentsjs/webcomponents-lite.js"></script>
+
+	<link rel="import" href="v-polymer.html">
+</head>
+<body>
+<script>
+var thePolymer = document.createElement('v-polymer');
+
+thePolymer.addEventListener('polymer-attr-changed', function (){
+	console.log('polymerAttr changed to "' + this.polymerAttr + '"');
+});
+</script>
+</body>
+</html>

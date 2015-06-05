@@ -1,0 +1,38 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+
+<script>
+Polymer({
+	is: 'v-polymer',
+
+	properties : {
+		polymerAttr: {
+			type: String,
+			readOnly: true, /* when readOnly, the property can't be modified
+								using attributes of the elements (or from the outside).
+								But an internal function of the form
+								'_set<propertyName>' is available to change
+								this value
+								*/
+			notify: true /* this means when the property change
+							an event of the form '<property-name>-changed'
+							is fired implicitly
+							*/
+		}
+	},
+
+	setPolymerAttr: function (attr) {
+		this._setPolymerAttr('(' + attr + ')'); // for readOnly change.
+	},
+
+	ready: function () {
+		this.addEventListener('polymer-attr-changed', this._onPolymerAttrChange);
+	},
+
+	_onPolymerAttrChange: function () {
+		console.log('this function is absolutely useless');
+		// because for internal property change behavior, observers
+		// are doing the job. Don't use this way.
+	}
+})
+</script>

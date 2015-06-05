@@ -1,0 +1,27 @@
+{
+  "name": "polymer-github",
+  "version": "1.0.0",
+  "description": "Des exemples de Polymers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vdegenne/Exemples-de-Polymers.git"
+  },
+  "keywords": [
+    "Polymer"
+  ],
+  "author": "Valentin DEGENNE",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vdegenne/Exemples-de-Polymers/issues"
+  },
+  "homepage": "https://github.com/vdegenne/Exemples-de-Polymers",
+  "devDependencies": {
+    "bower": "^1.4.1"
+  }
+}
