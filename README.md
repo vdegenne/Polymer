@@ -1,3 +1,12 @@
+# Polymer
+
+The Polymer object can be instanciated like a normal object :
+
+```js
+var polymerObj = new Polymer({ is: 'my-element', ... })();
+```
+
+
 # stackoverflow
 
 
