@@ -53,3 +53,29 @@ You can use the method above (using `::content`) to modify globally some styles.
 
 (*note #1:* it's not recommanded to use `::shadow` because it's deprecated)
 (*note #2:* also note, if customized element overwrite `p` in the example above, then `::shadow p` will have no effect, a solution could be to use a class on the paragraph you really want to apply a global effect, e.g. `::shadow p.my-style { ... }`)
+
+
+## custom styles
+
+(*note :* if you use custom styles, the note #2 in the example in the previous chapter won't work anymore, probably because the custom styles are interpreted in a sequence, so they will overwrite previous defined styles)
+
+When a new custom style is defined inside a scope or outside (using the `is="custom-style"` global styling block) it is registered in the Polymer styling system as a variable. The great thing about Polymer styling system is that it is scope-wise, you can change a variable value only for one given scope. E.g. 
+
+```css
+iron-icon {
+  --iron-icon-width: 12px;
+  --iron-icon-height: 12px;
+}
+```
+will only modified the variable in the scope of the iron-icon element. This only work for element and scope, for instance you can't write the following :
+
+```css
+p {
+  --p-color: red;
+  color: var(--p-color);
+}
+```
+in the scope of an element to change the style of just a paragraph.
+
+`Polymer.customStyleCache` can be used to look up all the defined custom styles in the current
+render.
