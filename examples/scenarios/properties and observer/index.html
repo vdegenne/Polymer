@@ -1,0 +1,33 @@
+<dom-module id="ex-properties">
+  <script>
+    Polymer({
+      is: 'ex-properties',
+
+      properties: {
+
+        newVar: {
+          type: Number,
+          value: 12,
+          observer: '_newVarChanged'
+
+        }
+      },
+
+      _newVarChanged: function (n, o) {
+        /* The following will display "12" because "newVar"
+           is initialized before the observer is called.
+           The observer is called even if a starting value
+           was provided in the properties object.
+           Usually we will not make any condition to prevent
+           the code in the observer to execute because it is
+           more convenient and faster to write the code */
+        console.log(this.newVar);
+        /* Note: the function will not be called if the 'value'
+           attribute is not set in the object of 'newVar' */
+
+        /* the first time this observer is called, the "o" (old)
+           attribute will be "undefined" */
+      }
+    });
+  </script>
+</dom-module>

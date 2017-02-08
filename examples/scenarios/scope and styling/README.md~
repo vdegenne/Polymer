@@ -1,0 +1,6 @@
+# Scope and styling
+
+When you define a new Polymer element, every elements in the template tag would be part of the scope
+of this new element. That means deeper customized elements would have their own scope and therefore
+stylings defined in the style tag in the template tag would only apply on the element of the current
+scope

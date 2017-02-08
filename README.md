@@ -5,6 +5,18 @@ The Polymer object can be instanciated like a normal object :
 ```js
 var polymerObj = new Polymer({ is: 'my-element', ... })();
 ```
+And has a constructor :
+```js
+Polymer({
+  is: 'my-element',
+
+  factoryImpl: function (options) {
+    ...
+  }
+});
+```
+
+*(note : `factoryImpl` is only called when you instanciating an object from the Polymer object. If you use `document.createElement('my-element');` it will not be called)*
 
 
 # stackoverflow
