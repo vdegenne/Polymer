@@ -40,9 +40,9 @@ this.set('someData', 1);
 
 ```javascript
 this.set('anObject.prop1', 1);
-/* We expect observers in ElementTwo on someData to be triggered */
+/* We expect observers in ElementTwo on anObject to be triggered */
 ```
-Then it is recommended to initialize the shared variable (1) in the properties static function of both elements.
+Then it is recommended to initialize the shared variable (1) in the `properties` static function of both elements.
 
 ```javascript
 static get properties () {
