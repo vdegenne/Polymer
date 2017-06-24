@@ -14,6 +14,8 @@ in this personal documentation, I use the following as the vocabulary :
 
 ## statements
 
+### two-way data binding theory
+
 Let's consider the following :
 
 ```html
@@ -21,9 +23,9 @@ Let's consider the following :
   <element-two some-data="{{someData}}"></element-two>
 </element-one>
 ```
-`ElementTwo.someData` needs to set `notify` to `true` so both `ElementOne.someData` and `ElementTwo.someData` can share the same variable *(1)*; That's a Two-way Data Binding.
+`ElementTwo.someData` needs to set `notify` to `true` so both `ElementOne.someData` and `ElementTwo.someData` share the same variable *(1)*; That's a Two-way Data Binding.
 
-if `ElementOne.someData` AND/OR `ElementTwo.someData` is/are `readyOnly`, the variable *(1)* used in the TWDB will still be modified even if both elements use some mutation functions (set, push, ...) but the notifications and the observers won't get called.
+- if `ElementOne.someData` AND/OR `ElementTwo.someData` is/are `readyOnly`, the shared variable *(1)* used in the TWDB will still be modified even if both elements use some mutation functions (set, push, ...) but the notifications and the observers won't get called.
 
 for instance, 
 ```javascript
@@ -31,6 +33,28 @@ for instance,
 this.set('someData', 1);
 /* Now ElementOne.someData and ElementTwo.someData are equal to 1
    But the mutation function has no effects because of the `readOnly` set to `true` */
+```
+- so it is recommended not to use `readOnly` UNLESS `ElementOne` only needs to read `someData` and not modify any of its value.
+
+- If `ElementOne` needs to invoke some observers inside `ElementTwo`, for instance :
+
+```javascript
+this.set('anObject.prop1', 1);
+/* We expect observers in ElementTwo on someData to be triggered */
+```
+Then it is recommended to initialize the shared variable (1) in the properties static function of both elements.
+
+```javascript
+static get properties () {
+  return {
+    ...
+    anObject: {
+      type: Object,
+      value: function () { return {} }
+    },
+    ...
+  }
+}
 ```
 
 - When using two-way data binding with objects (e.g. `<app-data my-object="{{myObject}}"></app-data>`) Polymer binds one object to the other into the same instance. It means, when you modify one object, both objects of the binding are modified. This is powerful, both elements are sharing the same object and Polymer does not try to serialize and pass any data into the element's attributes.
