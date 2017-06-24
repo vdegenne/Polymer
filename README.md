@@ -1,6 +1,37 @@
 # my-polymer-docs
 
-- in a two-way data binding, the properties of the upward element (which includes the other element for the binding) used in the binding shouldn't be set to "readOnly" because the child of the binding needs to modify its value.
+## vocabulary
+
+in this personal documentation, I use the following as the vocabulary :
+
+```html
+<element-one> <!-- `upward` or `higher` or `parent` element -->
+  <element-two></element-two> <!-- `downward` or `lower` or `child` element -->
+</element-one>
+```
+
+- TWDB : Two-way Data Binding
+
+## statements
+
+Let's consider the following :
+
+```html
+<element-one> 
+  <element-two some-data="{{someData}}"></element-two>
+</element-one>
+```
+`ElementTwo.someData` needs to set `notify` to `true` so both `ElementOne.someData` and `ElementTwo.someData` can share the same variable *(1)*; That's a Two-way Data Binding.
+
+if `ElementOne.someData` AND/OR `ElementTwo.someData` is/are `readyOnly`, the variable *(1)* used in the TWDB will still be modified even if both elements use some mutation functions (set, push, ...) but the notifications and the observers won't get called.
+
+for instance, 
+```javascript
+// in ElementOne
+this.set('someData', 1);
+/* Now ElementOne.someData and ElementTwo.someData are equal to 1
+   But the mutation function has no effects because of the `readOnly` set to `true` */
+```
 
 - When using two-way data binding with objects (e.g. `<app-data my-object="{{myObject}}"></app-data>`) Polymer binds one object to the other into the same instance. It means, when you modify one object, both objects of the binding are modified. This is powerful, both elements are sharing the same object and Polymer does not try to serialize and pass any data into the element's attributes.
 
