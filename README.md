@@ -36,25 +36,15 @@ this.set('someData', 1);
 ```
 - so it is recommended not to use `readOnly` UNLESS `ElementOne` only needs to read `someData` and not modify any of its value.
 
-- If `ElementOne` needs to invoke some observers inside `ElementTwo`, for instance :
+- In a TWDB, if an `Object` is to be shared and some observers need to be triggered, it is HIGHLY recommended that the upward element is doing the Object initialization in the `properties` static function. If the Object initialization is made in the lower element, the notification process will take some time to send the value in the upward element and if the upward element is using mutation functions, observers in the lower element may not be triggered properly.
+
+For instance, if `ElementOne` needs to invoke some observers inside `ElementTwo`, for instance :
 
 ```javascript
 this.set('anObject.prop1', 1);
-/* We expect observers in ElementTwo on anObject to be triggered */
-```
-the shared variable `anObject` has to reference a real object. One of the elements in the TWDB has to initialize it first.
-
-```javascript
-static get properties () {
-  return {
-    ...
-    anObject: {
-      type: Object,
-      value: function () { return {} }
-    },
-    ...
-  }
-}
+/* We expect observers in ElementTwo on anObject to be triggered 
+   But if this is executed too early in the app initialization,
+   anObject in ElementOne will still be undefined and won't notify properly*/
 ```
 
 - When using two-way data binding with objects (e.g. `<app-data my-object="{{myObject}}"></app-data>`) Polymer binds one object to the other into the same instance. It means, when you modify one object, both objects of the binding are modified. This is powerful, both elements are sharing the same object and Polymer does not try to serialize and pass any data into the element's attributes.
