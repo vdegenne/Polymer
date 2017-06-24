@@ -42,7 +42,7 @@ this.set('someData', 1);
 this.set('anObject.prop1', 1);
 /* We expect observers in ElementTwo on anObject to be triggered */
 ```
-Then it is recommended to initialize the shared variable (1) in the `properties` static function of both elements.
+the shared variable `anObject` has to reference a real object. One of the elements in the TWDB has to initialize it first.
 
 ```javascript
 static get properties () {
